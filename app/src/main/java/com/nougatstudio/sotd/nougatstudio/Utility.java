@@ -1,4 +1,4 @@
-package psndevelopers.chai;
+package com.nougatstudio.sotd.nougatstudio;
 
 /**
  * Created by Neeraj Solanki on 6/30/2016.
