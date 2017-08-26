@@ -51,6 +51,7 @@ InkPageIndicator inkPageIndicator;
             Toast toast = Toast.makeText(this, "Logged In Success "+profile.getFirstName(), Toast.LENGTH_SHORT);
             toast.show();
         }
+        //
     }
     private void initializeObjects(){
         Display display = getWindowManager().getDefaultDisplay();
