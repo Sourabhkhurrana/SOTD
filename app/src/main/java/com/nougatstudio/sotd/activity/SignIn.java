@@ -48,7 +48,7 @@ InkPageIndicator inkPageIndicator;
         width = size.x;
         height = size.y;
         backgroundImage = (ImageView) findViewById(R.id.backgroundImage);
-        setImageBlur();
+       // setImageBlur();
     }
 
     private void setImageBlur(){
