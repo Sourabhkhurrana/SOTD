@@ -10,12 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:windowSoftInputMode="stateHidden"
             android:name=".activity.MainActivity"
-            android:label="@string/title_activity_main"></activity>
+            android:label="@string/title_activity_main">
+
+        </activity>
         <activity android:name=".activity.FullScreen">
 
         </activity>
-        <activity android:name=".activity.SignIn">
+        <activity android:name=".activity.SignIn"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
