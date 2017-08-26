@@ -21,6 +21,7 @@ import com.nougatstudio.sotd.R;
 import com.nougatstudio.sotd.nougatstudio.Blur;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
+import layout.Registration;
 import layout.signup;
 
 public class SignIn extends AppCompatActivity {
@@ -83,7 +84,7 @@ InkPageIndicator inkPageIndicator;
                 case 0:
                     return new signup();
                 case 1:
-                    return new signup();
+                    return new Registration();
                 default:
                     return new signup();
             }

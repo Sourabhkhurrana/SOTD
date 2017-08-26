@@ -6,14 +6,18 @@ xmlns:tools="http://schemas.android.com/tools"
 android:background="@null"
 android:orientation="vertical"
 tools:context="layout.signup">
+
 <ScrollView
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
     android:layout_width="match_parent"
     android:fillViewport="true"
+    android:layout_centerInParent="true"
     android:layout_height="wrap_content">
     <RelativeLayout
-        android:layout_marginTop="300dp"
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/idLayer"
@@ -23,7 +27,7 @@ tools:context="layout.signup">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginEnd="@dimen/InputEditTextSideMargin"
             android:layout_marginStart="@dimen/InputEditTextSideMargin"
             android:text="@string/emailUserId"
@@ -39,9 +43,9 @@ tools:context="layout.signup">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="30dp"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
+                android:paddingLeft="10dp"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -57,7 +61,7 @@ tools:context="layout.signup">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginEnd="@dimen/InputEditTextSideMargin"
             android:layout_marginStart="@dimen/InputEditTextSideMargin"
             android:text="@string/password"
@@ -73,9 +77,9 @@ tools:context="layout.signup">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="30dp"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
+                android:paddingLeft="10dp"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
         </LinearLayout>
