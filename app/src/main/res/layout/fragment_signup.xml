@@ -4,6 +4,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 xmlns:tools="http://schemas.android.com/tools"
 android:background="@null"
+    android:id="@+id/signUpFragment"
 android:orientation="vertical"
 tools:context="layout.signup">
 
@@ -18,8 +19,15 @@ tools:context="layout.signup">
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:layout_width="150dp"
+            android:id="@+id/myLogo"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/my_logo1"
+            android:layout_height="150dp" />
         <LinearLayout
+            android:layout_below="@id/myLogo"
             android:id="@+id/idLayer"
             android:layout_width="match_parent"
             android:orientation="vertical"
@@ -86,6 +94,7 @@ tools:context="layout.signup">
         </LinearLayout>
 
         <Button
+            android:id="@+id/loginButton"
             android:layout_marginTop="25dp"
             android:layout_marginEnd="@dimen/InputEditTextSideMargin"
             android:layout_marginStart="@dimen/InputEditTextSideMargin"
@@ -96,6 +105,56 @@ tools:context="layout.signup">
             android:textStyle="bold"
             android:background="@drawable/layer_background_light_wight"
             android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/InputEditTextSideMargin"
+            android:layout_marginEnd="@dimen/InputEditTextSideMargin"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:background="@drawable/transparent_background_circle"
+                android:layout_width="80dp"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/middleLayer"
+                android:layout_height="80dp">
+            <Button
+                android:id="@+id/facebooLogin"
+                android:layout_width="match_parent"
+                android:background="@drawable/facebook_icon"
+                android:layout_height="match_parent" />
+                </RelativeLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/middleLayer"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/middleLayer"
+                android:background="@drawable/transparent_background_circle"
+                android:layout_height="80dp">
+              <Button
+                android:id="@+id/googleLogin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/google_icon" />
+                </RelativeLayout>
+        </RelativeLayout>
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp" />
     </RelativeLayout>
 </ScrollView>
 </RelativeLayout>

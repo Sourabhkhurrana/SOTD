@@ -1,5 +1,6 @@
 package com.nougatstudio.sotd.activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
@@ -16,7 +17,10 @@ import android.view.Display;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.Profile;
 import com.nougatstudio.sotd.R;
 import com.nougatstudio.sotd.nougatstudio.Blur;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
@@ -40,6 +44,13 @@ InkPageIndicator inkPageIndicator;
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         load();
         initializeObjects();
+        if(AccessToken.getCurrentAccessToken() != null)
+        {
+
+            Profile profile = Profile.getCurrentProfile();
+            Toast toast = Toast.makeText(this, "Logged In Success "+profile.getFirstName(), Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
     private void initializeObjects(){
         Display display = getWindowManager().getDefaultDisplay();
@@ -58,6 +69,11 @@ InkPageIndicator inkPageIndicator;
 //        backgroundImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
 //        backgroundImage.setMaxHeight(height);
 //        backgroundImage.setMaxWidth(width);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 

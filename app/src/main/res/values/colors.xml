@@ -3,14 +3,14 @@
     <color name="backgroundColor">#F1F2F4</color>
     <color name="colorTitle">#ffffff</color>
     <color name="Black">#ff000000</color>
-    <color name="colorPrimary">#8d3e3e3e</color>
+    <color name="colorPrimary">#ffffff</color>
     <color name="white">#ffffff</color>
     <color name="Light_White">#4dfcfcfc</color>
     <color name="Sky_Blue">#ff02bff3</color>
     <color name="Light_Pink">#cdf75785</color>
     <color name="Pink">#f6ff5a89</color>
     <color name="Dark_Blue">#f60f20ff</color>
-    <color name="colorAccent">#c7c2c2c2</color>
+    <color name="colorAccent">#c7ffffff</color>
     <color name="colorPrimaryDark">#d63d3553</color>
     <color name="Light_Blue">#ff21aae2</color>
     <color name="Grey">#b33a3a3a</color>

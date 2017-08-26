@@ -24,4 +24,11 @@
     <string name="female">Female</string>
     <string name="login">Login</string>
     <string name="registration">Registration</string>
+
+
+
+    <!--Facebook-->
+    <string name="facebook_app_id">491784131214351</string>
+    <string name="fb_login_protocol_scheme">fb491784131214351</string>
+
 </resources>
