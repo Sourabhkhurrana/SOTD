@@ -1,10 +1,13 @@
 package com.nougatstudio.sotd.activity;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,6 +24,13 @@ import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.Profile;
+import com.google.android.gms.auth.GoogleAuthUtil;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.nougatstudio.sotd.R;
 import com.nougatstudio.sotd.nougatstudio.Blur;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
@@ -28,8 +38,9 @@ import com.pixelcan.inkpageindicator.InkPageIndicator;
 import layout.Registration;
 import layout.signup;
 
-public class SignIn extends AppCompatActivity {
+public class SignIn extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     private ImageView backgroundImage;
+    GoogleApiClient mGoogleApiClient;
     int width;
     int height;
     private ViewPager viewPager;
@@ -44,14 +55,26 @@ InkPageIndicator inkPageIndicator;
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         load();
         initializeObjects();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
         if(AccessToken.getCurrentAccessToken() != null)
         {
 
             Profile profile = Profile.getCurrentProfile();
-            Toast toast = Toast.makeText(this, "Logged In Success "+profile.getFirstName(), Toast.LENGTH_SHORT);
-            toast.show();
+            if(profile != null) {
+                Toast toast = Toast.makeText(this, "Welcome facebook User " + profile.getFirstName(), Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            if(gso.getAccount() != null)
+            {
+                Toast toast = Toast.makeText(this, "Welcome Google User " + gso.getAccount().name, Toast.LENGTH_SHORT);
+                toast.show();
+
+            }
         }
-        //
+
     }
     private void initializeObjects(){
         Display display = getWindowManager().getDefaultDisplay();
@@ -75,6 +98,7 @@ InkPageIndicator inkPageIndicator;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
     }
 
 
@@ -85,6 +109,11 @@ InkPageIndicator inkPageIndicator;
         viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
         inkPageIndicator.setViewPager(viewPager);
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {

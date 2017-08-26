@@ -10,6 +10,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+            lintOptions {
+                abortOnError false
+            }
+
     }
     buildTypes {
         release {
@@ -31,6 +36,8 @@ dependencies {
     compile 'com.pacioianu.david:ink-page-indicator:1.2.0'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.google.android.gms:play-services-auth:11.0.4'
     testCompile 'junit:junit:4.12'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    apply plugin: 'com.google.gms.google-services'
 }
