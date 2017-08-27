@@ -21,11 +21,10 @@
                 app:cardCornerRadius="2dp"
                 app:cardElevation="5dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/GreyLikeAccent"
                 android:layout_height="250dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:background="@color/GreyLikeAccent"
+                    android:background="@drawable/gradient_test1"
                     android:layout_height="match_parent">
                 <android.support.v7.widget.CardView
                     android:layout_width="100dp"

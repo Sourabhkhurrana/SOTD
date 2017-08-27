@@ -15,6 +15,7 @@ import com.facebook.AccessToken;
 import com.nougatstudio.sotd.R;
 import com.nougatstudio.sotd.nougatstudio.BottomNavigationHelper;
 
+import layout.Dashboard;
 import layout.Profile;
 import layout.Registration;
 import layout.signup;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.commit();
                                        return true;
                 case R.id.navigation_home:
-                    fragmentTransaction.replace(R.id.fragmentContainerLayout, new Profile());
+                    fragmentTransaction.replace(R.id.fragmentContainerLayout, new Dashboard());
                     fragmentTransaction.commit();
                     return true;
                 case R.id.navigation_leaderboard:

@@ -41,7 +41,7 @@
     <string name="inviteSubtitle">Invite friends and enjoy more</string>
     <string name="title_activity_app_setting">AppSetting</string>
 
-<!--Bottom Navogation Values-->
+    <!--Bottom Navogation Values-->
     <string name="leaderBoard">Leaderboard</string>
     <string name="profile">Profile</string>
     <string name="dashboard">Dashboard</string>

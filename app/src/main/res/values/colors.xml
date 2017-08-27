@@ -37,6 +37,7 @@
     <item name="GreyLikeAccent" type="color">#42545b</item>
     <item name="Blue_Light" type="color">#d34d60e8</item>
 
+    <item name="myOrange" type="color">#d3e7796c</item>
 
     <color name="dot_dark_screen1">#d1395c</color>
     <color name="dot_dark_screen2">#14a895</color>
