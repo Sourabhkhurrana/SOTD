@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "635183944488",
+    "project_id": "firebase-sotd"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635183944488:android:64f93bf3173deb33",
+        "android_client_info": {
+          "package_name": "com.nougatstudio.sotd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "635183944488-te2f2u639rfv4h6vv3jbr0asrl4n5egn.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "635183944488-8ntc7ippvm4j8ije9ird9a06kmed583l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nougatstudio.sotd",
+            "certificate_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1wdnkFCjrQlCXqDg2huMoK4c1rnOQrWw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
