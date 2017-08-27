@@ -71,7 +71,7 @@
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
-
+<color name="myTransparent">#00000000</color>
 <color name="transpaernt">#64000000</color>
     <color name="black_overlay">#66000000</color>
 </resources>

@@ -120,10 +120,12 @@ tools:context="layout.signup">
                 android:layout_marginRight="20dp"
                 android:layout_toLeftOf="@+id/middleLayer"
                 android:layout_height="80dp">
-            <Button
+            <ImageButton
                 android:id="@+id/facebooLogin"
                 android:layout_width="match_parent"
-                android:background="@drawable/facebook_icon"
+                android:scaleType="centerCrop"
+                android:src="@drawable/facebook_icon"
+                android:background="?attr/selectableItemBackground"
                 android:layout_height="match_parent" />
                 </RelativeLayout>
             <LinearLayout
@@ -139,11 +141,15 @@ tools:context="layout.signup">
                 android:layout_toRightOf="@+id/middleLayer"
                 android:background="@drawable/transparent_background_circle"
                 android:layout_height="80dp">
-              <Button
+
+              <ImageButton
                 android:id="@+id/googleLogin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/google_icon" />
+                  android:scaleType="centerCrop"
+                  android:src="@drawable/google_icon"
+                  android:background="?attr/selectableItemBackground"/>
+
                 </RelativeLayout>
         </RelativeLayout>
 

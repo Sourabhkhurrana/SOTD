@@ -5,4 +5,5 @@
     <dimen name="InputEditTextHeight">40dp</dimen>
     <dimen name="InputEditTextSideMargin">50dp</dimen>
     <dimen name="TextMargin">45dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

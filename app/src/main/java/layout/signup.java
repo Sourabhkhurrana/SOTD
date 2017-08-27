@@ -4,6 +4,7 @@ package layout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -13,14 +14,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookAuthorizationException;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.Profile;
+import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -32,6 +37,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.nougatstudio.sotd.R;
+import com.nougatstudio.sotd.activity.MainActivity;
 
 import java.util.Arrays;
 
@@ -45,9 +51,12 @@ public class signup extends Fragment implements GoogleApiClient.OnConnectionFail
 
 {
     private static final int RC_SIGN_IN = 9001;
-    Button facebookButton;
-    Button googleButton;
+    ImageButton facebookButton;
+    ImageButton googleButton;
     LoginButton loginButton;
+    ProfileTracker mProfileTracker;
+    AccessTokenTracker accessTokenTracker;
+    AccessTokenTracker accessTokenIsValid;
     CallbackManager callbackManager;
     GoogleApiClient mGoogleApiClient;
     View root;
@@ -74,9 +83,9 @@ public class signup extends Fragment implements GoogleApiClient.OnConnectionFail
     //Initilize Objects
     public void initilizeObjects()
     {
-        facebookButton = (Button) root.findViewById(R.id.facebooLogin);
+        facebookButton = (ImageButton) root.findViewById(R.id.facebooLogin);
         loginButton = (LoginButton) root.findViewById(R.id.facebook_sign_in);
-        googleButton = (Button)root.findViewById(R.id.googleLogin);
+        googleButton = (ImageButton) root.findViewById(R.id.googleLogin);
 
         facebookButton.setOnClickListener(this);
         loginButton.setOnClickListener(this);
@@ -106,9 +115,35 @@ public class signup extends Fragment implements GoogleApiClient.OnConnectionFail
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Profile profile = Profile.getCurrentProfile();
-                Toast toast = Toast.makeText(getActivity(), "Logged In Success "+profile.getFirstName(), Toast.LENGTH_SHORT);
-                toast.show();
+                accessTokenTracker = new AccessTokenTracker() {
+                    @Override
+                    protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+                        // Set the access token using
+                        // currentAccessToken when it's loaded or set.
+                        Profile.fetchProfileForCurrentAccessToken();
+                        AccessToken.setCurrentAccessToken(currentAccessToken);
+
+                    }
+                };
+                accessTokenTracker.startTracking();
+
+                if(Profile.getCurrentProfile() == null) {
+                    mProfileTracker = new ProfileTracker() {
+                        @Override
+                        protected void onCurrentProfileChanged(Profile profile, Profile profile2) {
+                            // profile2 is the new profile
+                            Log.v("facebook - profile", profile2.getFirstName());
+                            mProfileTracker.stopTracking();
+                        }
+                    };
+                    // no need to call startTracking() on mProfileTracker
+                    // because it is called by its constructor, internally.
+                }
+                else {
+                    Profile profile = Profile.getCurrentProfile();
+                    Log.v("facebook - profile", profile.getFirstName());
+                }
+                startActivity(new Intent(getContext(), MainActivity.class));
 
             }
 
@@ -152,6 +187,7 @@ public class signup extends Fragment implements GoogleApiClient.OnConnectionFail
             GoogleSignInAccount acct = result.getSignInAccount();
             Toast toast = Toast.makeText(getActivity(), "Sign In Success "+acct.getDisplayName(), Toast.LENGTH_SHORT);
             toast.show();
+            startActivity(new Intent(getContext(), MainActivity.class));
 
         } else {
             // Signed out, show unauthenticated UI.

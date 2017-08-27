@@ -7,6 +7,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.nougatstudio.sotd.activity.MainActivity">
+<RelativeLayout
+    android:background="@color/GreyLikeAccent"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+    <ImageView
+        android:src="@drawable/appbarlogo"
+        android:layout_width="120dp"
+        android:foregroundGravity="center"
+        android:layout_height="match_parent" />
+    <ImageButton
+        android:layout_width="32dp"
+        android:layout_centerVertical="true"
+        android:scaleType="fitCenter"
+        android:layout_marginEnd="16dp"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/transparent_background_circle"
+        android:src="@drawable/ic_notifications_white_36dp"
+        android:layout_height="32dp" />
+</RelativeLayout>
 
     <FrameLayout
         android:id="@+id/content"
@@ -14,16 +33,10 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/message"
+        <RelativeLayout
+            android:id="@+id/fragmentContainerLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/title_home" />
-
+            android:layout_height="wrap_content" />
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
@@ -31,7 +44,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="?android:attr/windowBackground"
+        app:itemTextColor="@color/GreyLikeAccent"
+        android:background="@color/white"
+        app:itemIconTint="@color/GreyLikeAccent"
         app:menu="@menu/navigation" />
 
 </LinearLayout>

@@ -66,6 +66,7 @@ InkPageIndicator inkPageIndicator;
             if(profile != null) {
                 Toast toast = Toast.makeText(this, "Welcome facebook User " + profile.getFirstName(), Toast.LENGTH_SHORT);
                 toast.show();
+                startActivity(new Intent(this,MainActivity.class));
             }
             if(gso.getAccount() != null)
             {

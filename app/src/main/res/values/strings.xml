@@ -26,9 +26,25 @@
     <string name="registration">Registration</string>
 
 
-
     <!--Facebook-->
     <string name="facebook_app_id">491784131214351</string>
     <string name="fb_login_protocol_scheme">fb491784131214351</string>
 
+    <!--My Profile-->
+    <string name="myPreferencesHeader">My Preferences</string>
+    <string name="myPreferencesSubtitle">CHose who you\'d like to see</string>
+
+    <string name="appSettingHeader">App Settings</string>
+    <string name="appSettingSubtitle">Manage Privacy , Notifications</string>
+
+    <string name="inviteHeader">Invite Friends</string>
+    <string name="inviteSubtitle">Invite friends and enjoy more</string>
+    <string name="title_activity_app_setting">AppSetting</string>
+
+<!--Bottom Navogation Values-->
+    <string name="leaderBoard">Leaderboard</string>
+    <string name="profile">Profile</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="upload">Upload</string>
+    <string name="search">Search</string>
 </resources>
