@@ -41,17 +41,17 @@ import static com.nougatstudio.sotd.R.id.loginButton;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class signup extends Fragment implements GoogleApiClient.OnConnectionFailedListener
+public class signup extends Fragment implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener
 
 {
     private static final int RC_SIGN_IN = 9001;
-Button facebookButton;
+    Button facebookButton;
     Button googleButton;
-    SignInButton googleSignIn;
-     LoginButton loginButton;
+    LoginButton loginButton;
     CallbackManager callbackManager;
-GoogleApiClient mGoogleApiClient;
+    GoogleApiClient mGoogleApiClient;
     View root;
+
     public signup() {
         // Required empty public constructor
     }
@@ -62,89 +62,89 @@ GoogleApiClient mGoogleApiClient;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root =  inflater.inflate(R.layout.fragment_signup, container, false);
+
+        googleInitilize();
+        initilizeObjects();
+        facebookCallbacks();
+
+
+        return root;
+    }
+
+    //Initilize Objects
+    public void initilizeObjects()
+    {
+        facebookButton = (Button) root.findViewById(R.id.facebooLogin);
+        loginButton = (LoginButton) root.findViewById(R.id.facebook_sign_in);
+        googleButton = (Button)root.findViewById(R.id.googleLogin);
+
+        facebookButton.setOnClickListener(this);
+        loginButton.setOnClickListener(this);
+        googleButton.setOnClickListener(this);
+        loginButton.setFragment(this);
+        callbackManager = CallbackManager.Factory.create();
+    }
+
+    // Google Initilize Methods
+    public void googleInitilize()
+    {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
 
         // Build a GoogleApiClient with access to the Google Sign-In API and the
-// options specified by gso.
         mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
                 .enableAutoManage(getActivity() /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-
-        facebookButton = (Button) root.findViewById(R.id.facebooLogin);
-        loginButton = (LoginButton) root.findViewById(R.id.facebook_sign_in);
-        googleSignIn = (SignInButton)root.findViewById(R.id.google_sign_in);
-        googleButton = (Button)root.findViewById(R.id.googleLogin);
-        loginButton.setFragment(this);
-        callbackManager = CallbackManager.Factory.create();
-        // If using in a fragment
-        googleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                startActivityForResult(signInIntent, RC_SIGN_IN);
-            }
-        });
-
-        facebookButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast toast = Toast.makeText(getActivity(), "Clicked", Toast.LENGTH_SHORT);
-                toast.show();
-                AccessToken.setCurrentAccessToken(null);
-                loginButton.performClick();
-            }
-        });
-
-
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-if(AccessToken.getCurrentAccessToken() == null) {
-    LoginManager.getInstance().logInWithReadPermissions(getActivity(), Arrays.asList("public_profile"));
-}
-else
-{
-
-    Profile profile = Profile.getCurrentProfile();
-    Toast toast = Toast.makeText(getActivity(), "Already Logged In  "+profile.getFirstName(), Toast.LENGTH_SHORT);
-    toast.show();
-
-}
-
-            }
-            });
-
-
-    // Callback registration
-    loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-        @Override
-        public void onSuccess(LoginResult loginResult) {
-            Profile profile = Profile.getCurrentProfile();
-            Toast toast = Toast.makeText(getActivity(), "Logged In Success "+profile.getFirstName(), Toast.LENGTH_SHORT);
-            toast.show();
-
-        }
-
-
-        @Override
-        public void onCancel() {
-            // App code
-            Toast toast = Toast.makeText(getActivity(), "Logged In Cancel", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
-        @Override
-        public void onError(FacebookException exception) {
-            Toast toast = Toast.makeText(getActivity(), "Logged In Error", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-});
-        return root;
     }
 
+    // Facebook CallBack Method
+    public  void facebookCallbacks()
+    {
+        // Faceboo Callback registration
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Profile profile = Profile.getCurrentProfile();
+                Toast toast = Toast.makeText(getActivity(), "Logged In Success "+profile.getFirstName(), Toast.LENGTH_SHORT);
+                toast.show();
+
+            }
+
+
+            @Override
+            public void onCancel() {
+                // App code
+                Toast toast = Toast.makeText(getActivity(), "Logged In Cancel", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                Toast toast = Toast.makeText(getActivity(), "Logged In Error", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+    }
+
+
+    // Handle Facebook & Google Result
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
+        }
+    }
+
+    //    Google Methods
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
@@ -160,18 +160,44 @@ else
         }
     }
 
+    // Click Listner handle
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            // Facebook Default Button
+            case R.id.facebook_sign_in: {
+                if (AccessToken.getCurrentAccessToken() == null) {
+                    LoginManager.getInstance().logInWithReadPermissions(getActivity(), Arrays.asList("public_profile"));
+                } else {
+
+                    Profile profile = Profile.getCurrentProfile();
+                    Toast toast = Toast.makeText(getActivity(), "Already Logged In  " + profile.getFirstName(), Toast.LENGTH_SHORT);
+                    toast.show();
+
+                }
+            }
+            break;
+            // Custom Facebook Button
+            case R.id.facebooLogin:
+            {
+                Toast toast = Toast.makeText(getActivity(), "Clicked", Toast.LENGTH_SHORT);
+                toast.show();
+                AccessToken.setCurrentAccessToken(null);
+                loginButton.performClick();
+            }
+            break;
+            // Google Custom Button
+            case R.id.googleLogin:
+            {
+                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+            break;
+
+            default:
+                break;
+
         }
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
     }
 }
