@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     fragmentTransaction.commit();
                     return true;
                 case R.id.navigation_leaderboard:
+                    item.setIcon(R.drawable.leaderboard_icon);
                     fragmentTransaction.replace(R.id.fragmentContainerLayout, new Profile());
                     fragmentTransaction.commit();
                     return true;
