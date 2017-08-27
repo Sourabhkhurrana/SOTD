@@ -84,16 +84,16 @@ InkPageIndicator inkPageIndicator;
         width = size.x;
         height = size.y;
         backgroundImage = (ImageView) findViewById(R.id.backgroundImage);
-       // setImageBlur();
+        setImageBlur();
     }
 
     private void setImageBlur(){
-//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.scene1);
-//        Bitmap blurredBitmap = Blur.blur(this, bitmap);
-//        backgroundImage.setImageBitmap(blurredBitmap);
-//        backgroundImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//        backgroundImage.setMaxHeight(height);
-//        backgroundImage.setMaxWidth(width);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.b);
+        Bitmap blurredBitmap = Blur.blur(this, bitmap);
+        backgroundImage.setImageBitmap(blurredBitmap);
+        backgroundImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        backgroundImage.setMaxHeight(height);
+        backgroundImage.setMaxWidth(width);
     }
 
     @Override

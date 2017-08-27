@@ -20,7 +20,7 @@
             android:layout_height="350dp"
             android:layout_marginBottom="75dp"
             android:contentDescription="@null"
-            android:scaleType="fitXY" />
+            android:scaleType="centerCrop" />
 
         <RelativeLayout
             android:layout_width="match_parent"
